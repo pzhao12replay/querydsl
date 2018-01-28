@@ -69,38 +69,20 @@ public abstract class AbstractSQLTemplatesTest {
             select(three));
 
         if (templates.getDummyTable() == null) {
-            if (templates.isUnionsWrapped()) {
-                assertEquals(
-                        "(select 1 as col1)\n" +
-                        "union\n" +
-                        "(select 2)\n" +
-                        "union\n" +
-                        "(select 3)", union.toString());
-            } else {
-                assertEquals(
-                        "select 1 as col1)\n" +
-                        "union\n" +
-                        "select 2\n" +
-                        "union\n" +
-                        "select 3", union.toString());
-            }
+            assertEquals(
+                    "(select 1 as col1)\n" +
+                    "union\n" +
+                    "(select 2)\n" +
+                    "union\n" +
+                    "(select 3)", union.toString());
         } else {
             String dummyTable = templates.getDummyTable();
-            if (templates.isUnionsWrapped()) {
-                assertEquals(
-                        "(select 1 as col1 from " + dummyTable + ")\n" +
-                        "union\n" +
-                        "(select 2 from " + dummyTable + ")\n" +
-                        "union\n" +
-                        "(select 3 from " + dummyTable + ")", union.toString());
-            } else {
-                assertEquals(
-                        "select 1 as col1 from " + dummyTable + "\n" +
-                        "union\n" +
-                        "select 2 from " + dummyTable + "\n" +
-                        "union\n" +
-                        "select 3 from " + dummyTable, union.toString());
-            }
+            assertEquals(
+                    "(select 1 as col1 from " + dummyTable + ")\n" +
+                    "union\n" +
+                    "(select 2 from " + dummyTable + ")\n" +
+                    "union\n" +
+                    "(select 3 from " + dummyTable + ")", union.toString());
         }
     }
 

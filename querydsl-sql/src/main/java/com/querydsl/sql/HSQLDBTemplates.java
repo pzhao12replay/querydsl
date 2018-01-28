@@ -46,12 +46,11 @@ public class HSQLDBTemplates extends SQLTemplates {
     }
 
     public HSQLDBTemplates(char escape, boolean quote) {
-        super(Keywords.HSQLDB, "\"", escape, quote, false);
+        super(Keywords.HSQLDB, "\"", escape, quote);
         setLimitRequired(true);
         setAutoIncrement(" identity");
         setDefaultValues("\ndefault values");
         setFunctionJoinsWrapped(true);
-        setUnionsWrapped(false);
 
         setPrecedence(Precedence.ARITH_HIGH, Ops.CONCAT);
         setPrecedence(Precedence.ARITH_LOW + 1, Ops.NOT);

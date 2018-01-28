@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.querydsl</groupId>
     <artifactId>querydsl-root</artifactId>
-    <version>4.1.5.BUILD-SNAPSHOT</version>
+    <version>4.1.4.BUILD-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
@@ -22,6 +22,12 @@
     <url>${project.githubpage}</url>
   </scm>
 
+  <properties>
+    <hibernate.version>4.2.0.Final</hibernate.version>
+    <jdo.version>2.3-eb</jdo.version>
+    <morphia.version>0.105</morphia.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.querydsl</groupId>
@@ -35,13 +41,13 @@
       </exclusions>
     </dependency>
     
-    <!-- provided -->
+    <!-- provided -->    
     <dependency>
       <groupId>javax.jdo</groupId>
-      <artifactId>jdo-api</artifactId>
+      <artifactId>jdo2-api</artifactId>
       <version>${jdo.version}</version>
       <scope>provided</scope>
-    </dependency>
+    </dependency>    
     <dependency>
       <groupId>org.hibernate.javax.persistence</groupId>
       <artifactId>hibernate-jpa-2.0-api</artifactId>
