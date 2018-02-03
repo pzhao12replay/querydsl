@@ -110,13 +110,6 @@ public class MetaDataSerializer extends EntitySerializer {
                 + "forVariable(variable), schema, table);");
         constructorContent(writer, model);
         writer.end();
-
-        writer.beginConstructor(new Parameter("variable", Types.STRING),
-                                new Parameter("schema", Types.STRING));
-        writer.line(SUPER, "(", writer.getClassConstant(localName), COMMA,
-                "forVariable(variable), schema, \"", model.getData().get("table").toString(), "\");");
-        constructorContent(writer, model);
-        writer.end();
     }
 
     @Override

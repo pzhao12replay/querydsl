@@ -471,21 +471,7 @@ public class SQLSerializer extends SerializerBase<SQLSerializer> {
         dmlWithSchema = false;
 
         if (metadata.getWhere() != null) {
-            serializeForWhere(metadata);
-        }
-    }
-
-    void serializeForWhere(QueryMetadata metadata) {
-        boolean requireSchemaInWhere = templates.isRequiresSchemaInWhere();
-        boolean originalDmlWithSchema = dmlWithSchema;
-
-        if (requireSchemaInWhere) {
-            dmlWithSchema = true;
-        }
-        append(templates.getWhere()).handle(metadata.getWhere());
-
-        if (requireSchemaInWhere) {
-            dmlWithSchema = originalDmlWithSchema;
+            append(templates.getWhere()).handle(metadata.getWhere());
         }
     }
 
@@ -648,7 +634,7 @@ public class SQLSerializer extends SerializerBase<SQLSerializer> {
         skipParent = false;
 
         if (metadata.getWhere() != null) {
-            serializeForWhere(metadata);
+            append(templates.getWhere()).handle(metadata.getWhere());
         }
     }
 
@@ -1000,9 +986,7 @@ public class SQLSerializer extends SerializerBase<SQLSerializer> {
                     } else {
                         result = ExpressionUtils.notInAny(path, partitioned);
                     }
-                    append("(");
                     result.accept(this, null);
-                    append(")");
                 }
             }
 

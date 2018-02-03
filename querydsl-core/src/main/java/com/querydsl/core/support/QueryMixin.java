@@ -204,14 +204,13 @@ public class QueryMixin<T> {
     }
 
     public final T groupBy(Expression<?> e) {
-        e = convert(e, Role.GROUP_BY);
         metadata.addGroupBy(e);
         return self;
     }
 
     public final T groupBy(Expression<?>... o) {
         for (Expression<?> e : o) {
-            groupBy(e);
+            metadata.addGroupBy(e);
         }
         return self;
     }
